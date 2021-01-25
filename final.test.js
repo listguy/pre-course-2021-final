@@ -31,14 +31,21 @@ describe(projectName, () => {
   });
   test("The todo list should be empty first", async () => {
     const elements = await page.$$(".todoText");
+    //********* */
+    console.log("**************ELEMENTS**********");
+    console.log(elements);
+    console.log("*******************");
+    //********** */
     expect(elements.length).toBe(0);
   });
   test("Can add todo task with text and priority", async () => {
     const firstTaskText = "first task input";
     const secondTaskText = "second task input";
     //******* */
+    console.log("**************TEXT INPUT**********");
     const textInput = await page.$$("#textInput");
     console.log(textInput);
+    console.log("*******************");
     //********** */
     await page.type("#textInput", firstTaskText);
     await page.select("#prioritySelector", "1");
