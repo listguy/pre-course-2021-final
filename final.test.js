@@ -4,7 +4,8 @@
 const puppeteer = require("puppeteer");
 const full4s = require("@suvelocity/tester");
 
-const path = "file://" + __dirname + "/src/index.html";
+const path = `file://${__dirname}/../_cloned-app/src/index.html`;
+
 let page;
 let browser;
 //********** */
