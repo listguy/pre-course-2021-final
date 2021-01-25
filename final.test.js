@@ -42,6 +42,10 @@ describe(projectName, () => {
     const firstTaskText = "first task input";
     const secondTaskText = "second task input";
     //******* */
+    await page.waitForSelector("#textInput");
+    await page.waitForSelector("#prioritySelector");
+    await page.waitForSelector("#addButton");
+
     console.log("**************TEXT INPUT**********");
     const textInput = await page.$$("#textInput");
     console.log(textInput);
@@ -50,10 +54,16 @@ describe(projectName, () => {
     await page.type("#textInput", firstTaskText);
     await page.select("#prioritySelector", "1");
     await page.click("#addButton");
+    //**********
+    await page.waitForSelector(".todoText");
+    //********
     const elements = await page.$$(".todoText");
     const firstItem = await (
       await elements[0].getProperty("innerText")
     ).jsonValue();
+    //*******
+    await page.waitForSelector(".todoPriority");
+    //*******
     const priorityElements = await page.$$(".todoPriority");
     const firstItemPriority = await (
       await priorityElements[0].getProperty("innerText")
@@ -64,6 +74,9 @@ describe(projectName, () => {
     expect(firstItemPriority).toBe("1");
   });
   test("After add task the input should be empty", async () => {
+    //******** */
+    await page.waitForSelector("#textInput");
+    //************* */
     await page.type("#textInput", secondTaskText);
     await page.select("#prioritySelector", "4");
     await page.click("#addButton");
